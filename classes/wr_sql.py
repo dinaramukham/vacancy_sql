@@ -43,3 +43,26 @@ def wr_sql(info_vacancy):
     connect.commit()
     cursor.close()
     connect.close()
+def create_sql():
+    connect = psycopg2.connect(
+        host='localhost',
+        database='vacancies', #
+        user='postgres',
+        password='12345'
+    )
+    cursor = connect.cursor()
+    #cursor.execute('create database db_vacancies;')
+    cursor.execute('create table  vacancies (id_vacancy serial, name_vacancy text, company_name text, url_vacancy text, salary_from int, salary_to int, currency text, adres text, responsibility text, requirement text);')
+create_sql()
+# """create table  vacancies(
+#         id_vacancy serial,
+#         name_vacancy text,
+#         company_name text,
+#         url_vacancy	text,
+#         salary_from	int,
+#         salary_to	int,
+#         currency	text,
+#         adres text,
+#         responsibility text,
+#         requirement text
+#         );"""
