@@ -28,6 +28,7 @@ class HeadHunter:
         dict_={}
         dict_['name']=data['name'] # название вакансии
         dict_['company_name'] = data['employer']['name']
+        dict_['company_url'] =data['employer']['alternate_url']
         dict_['url']=data['alternate_url'] # ссылка
         if data['salary'] != None :
             dict_['from'] = data['salary'].get('from')
