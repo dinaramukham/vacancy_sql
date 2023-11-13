@@ -44,25 +44,36 @@ def wr_sql(info_vacancy):
     cursor.close()
     connect.close()
 def create_sql():
-    connect = psycopg2.connect(
-        host='localhost',
-        database='vacancies', #
-        user='postgres',
-        password='12345'
-    )
+
+    connect = psycopg2.connect(host = 'localhost',
+    database = 'postgres',
+    user = 'postgres',
+    password = '12345')
+
+    connect.autocommit = True
     cursor = connect.cursor()
-    #cursor.execute('create database db_vacancies;')
-    cursor.execute('create table  vacancies (id_vacancy serial, name_vacancy text, company_name text, url_vacancy text, salary_from int, salary_to int, currency text, adres text, responsibility text, requirement text);')
-create_sql()
-# """create table  vacancies(
-#         id_vacancy serial,
-#         name_vacancy text,
-#         company_name text,
-#         url_vacancy	text,
-#         salary_from	int,
-#         salary_to	int,
-#         currency	text,
-#         adres text,
-#         responsibility text,
-#         requirement text
-#         );"""
+    cursor.execute(f"DROP DATABASE vacancies WITH (FORCE)")
+    cursor.execute(f"CREATE DATABASE vacancies")
+    connect.close()
+
+    connect =psycopg2.connect(host = 'localhost',
+    database = 'vacancies',  #
+    user = 'postgres',
+    password = '12345')
+
+    with connect.cursor() as cur:
+        cur.execute("""create table  vacancies (
+        id_vacancy serial, 
+        name_vacancy text, 
+        company_name text, 
+        url_vacancy text, 
+        salary_from int, 
+        salary_to int, 
+        currency text, 
+        adres text, 
+        responsibility text, 
+        requirement text);""")
+    connect.commit()
+    connect.close()
+
+

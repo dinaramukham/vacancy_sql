@@ -44,12 +44,3 @@ class HeadHunter:
         dict_['responsibility']=data['snippet']['responsibility'] # обязаности
         dict_['requirement']=data['snippet']['requirement'] # требования
         return dict_
-
-#название вакансии ссылка зп обязаности требования опыт работы адрес регион
-#for index, value in enumerate(HeadHunter.get_json_info()) :
-#    print(value['address']  )  # 'alternate_url'
-# ---15478 вк----3529 сбер----1740 яндекс----4219 теле2----41862 скб контур----3776 мтс диджитал----733 ланит----2180 озон----3127 мегафон----947 данон
-#data=HeadHunter.get_json_info(employer_id= 1740)
-#print(type(data) )
-#for el in data:
-#    print(el['employer']['name']    )
