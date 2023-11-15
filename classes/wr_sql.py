@@ -75,8 +75,12 @@ def create_sql():
 
     connect.autocommit = True
     cursor = connect.cursor()
-    cursor.execute(f"DROP DATABASE vacancies WITH (FORCE)") #
-    cursor.execute(f"CREATE DATABASE vacancies")
+    try:
+        cursor.execute(f'DROP DATABASE vacancies WITH (FORCE)') #
+    except psycopg2.errors.InvalidCatalogName:
+        cursor.execute(f"CREATE DATABASE vacancies")
+    else:
+        cursor.execute(f"CREATE DATABASE vacancies")
     connect.close()
 
     connect =psycopg2.connect(host = 'localhost',
@@ -102,5 +106,5 @@ def create_sql():
         requirement text);""")
     connect.commit()
     connect.close()
-    #['company_url']
 
+#create_sql()
