@@ -37,13 +37,13 @@ def wr_sql(info_vacancy):
 
     #cursor = connect.cursor()
     with connect.cursor() as  cursor:
-        sql_query = """
+        sql_query = """          
                INSERT INTO vacancies (
-                   name_vacancy, company_name, url_vacancy,
+                   name_vacancy, company_name, url_vacancy, 
                    salary_from, salary_to, currency,
                    adres, responsibility, requirement
-               ) VALUES (
-                   %(name)s, %(company_name)s, %(url)s, %(from)s, %(to)s,
+               ) VALUES (   
+                   %(name)s, %(company_name)s, %(url)s, %(from)s, %(to)s,  
                    %(currency)s, %(address)s, %(responsibility)s, %(requirement)s
                );
            """
@@ -75,7 +75,7 @@ def create_sql():
 
     connect.autocommit = True
     cursor = connect.cursor()
-    cursor.execute(f"DROP DATABASE vacancies WITH (FORCE)")
+    cursor.execute(f"DROP DATABASE vacancies WITH (FORCE)") #
     cursor.execute(f"CREATE DATABASE vacancies")
     connect.close()
 
@@ -104,4 +104,3 @@ def create_sql():
     connect.close()
     #['company_url']
 
-create_sql()
